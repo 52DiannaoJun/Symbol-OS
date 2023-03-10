@@ -63,16 +63,16 @@ putloop:
 rtn:
   RET
 SD:
-  MOV AX, 5301H         ;5301h方法:APM实模式控制
-  XOR BX, BX            ;设备ID: 0000h (=BIOS)
-  INT 15H               ;15h中断
-  MOV AX, 530EH         ;530Eh方法:APM设备版本
-  MOV CX, 0102H         ;版本: APM v1.2
-  INT 15H               ;15h号中断
-  MOV AX, 5307H         ;5307h: APM电源管理
-  MOV BL, 01H           ;设备ID: 0001h (=所有设备)
-  MOV CX, 0003H         ;电源管理: 0003h (=关闭)
-  INT 15H               ;15h中断
+  MOV AX, 5301H			;5301h方法:APM实模式控制
+  XOR BX, BX			;设备ID: 0000h (=BIOS)
+  INT 15H				;15h中断
+  MOV AX, 530EH			;530Eh方法:APM设备版本
+  MOV CX, 0102H			;版本: APM v1.2
+  INT 15H				;15h号中断
+  MOV AX, 5307H			;5307h: APM电源管理
+  MOV BL, 01H			;设备ID: 0001h (=所有设备)
+  MOV CX, 0003H			;电源管理: 0003h (=关闭)
+  INT 15H				;15h中断
 rst:
   JMP 00000H:7c00H
 rsr:
@@ -260,7 +260,7 @@ memcpy:
 
   ALIGN 16
 GDT0:
-  TIMES 8 DB 0x00                       ; 初始值
+  TIMES 8 DB 0                 ; 初始值
   DW    0xffff, 0x0000, 0x9200, 0x00cf  ; 可写的32位段寄存器
   DW    0xffff, 0x0000, 0x9a28, 0x0047  ; 可执行的文件的32位寄存器
 

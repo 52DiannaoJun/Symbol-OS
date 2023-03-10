@@ -7,11 +7,7 @@
   GLOBAL load_gdtr, load_idtr
   GLOBAL load_cr0, store_cr0, far_jmp
   GLOBAL set_err
-  GLOBAL sys_reboot, sys_restart, sys_shutdown
-  EXTERN _sys_memcheck_sub
-  [SECTION .data]
-  tempbufr:
-    DQ 0x00
+
   [SECTION .text]
 load_gdtr:              ; void load_gdtr(int limit, int addr);
   MOV   AX, [ESP+4]     ; limit
@@ -108,26 +104,4 @@ far_jmp:                ; void far_jmp(int eip, int cs);
 set_err:                ; void set_err(char*);
   MOV EAX, [ESP+4];
   INT 0x03
-  RET
-
-sys_reboot:             ; void sys_reboot(void);
-  MOV EAX,  0
-  MOV EBX,  0
-  MOV ECX,  0
-  MOV EDX,  0
-  MOV ES,   AX
-  MOV DS,   AX
-  MOV ESI,  EAX
-  MOV EDI,  EAX
-  MOV ESP,  EAX
-  MOV EBP,  EAX
-
-  MOV AL,   0xfe
-  OUT 0x64, AL
-  RET
-
-sys_restart:            ; void sys_restart(void);
-  RET
-
-sys_shutdown:           ; void sys_shutdown(void);
   RET

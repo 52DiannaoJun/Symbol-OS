@@ -19,7 +19,7 @@ endif
 # C Library Objects
 L_OBJS  := libc/*/*.bin
 # Kernel Objects
-K_OBJS	:= func.bin font.bin int.bin kernel.bin
+K_OBJS	:= kernel.bin func.bin font.bin int.bin
 OBJS    := $(L_OBJS) $(K_OBJS)
 
 # file
